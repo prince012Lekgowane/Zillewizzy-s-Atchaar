@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Zillewizzy's Atchaar – Handcrafted garlic atchaar delivered in Limpopo and Gauteng. Hot, Mild & Classic. Skyf ATCHAAR Zille! 🔥"/>
+  <title>Zillewizzy's Atchaar | Spice with Personality 🔥</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #E63946;
+      --orange: #F77F00;
+      --dark: #0A0A0A;
+      --light: #F1FAEE;
+      --accent: #FFD60A;
+    }
+    
+    * { margin:0; padding:0; box-sizing:border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background: radial-gradient(ellipse at 20% 30%, rgba(230, 57, 70, 0.15) 0%, transparent 50%),
+                  radial-gradient(ellipse at 80% 70%, rgba(247, 127, 0, 0.15) 0%, transparent 50%),
+                  radial-gradient(ellipse at 50% 50%, rgba(255, 214, 10, 0.08) 0%, transparent 50%);
+      animation: bgShift 20s ease-in-out infinite;
+    }
+
+    @keyframes bgShift {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(5deg); }
+    }
+
+    /* Header Section */
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .zille-face {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 6px solid var(--orange);
+      box-shadow: 0 0 60px rgba(247,127,0,0.8), 0 0 120px rgba(230,57,70,0.4);
+      margin: 0 auto 2rem;
+      animation: float 6s ease-in-out infinite, pulse 3s ease-in-out infinite;
+      position: relative;
+    }
+
+    .zille-face::after {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--orange), var(--red), var(--accent), var(--orange));
+      z-index: -1;
+      animation: rotate 8s linear infinite;
+      opacity: 0.5;
+      filter: blur(20px);
+    }
+
+    .zille-face img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      background: linear-gradient(135deg, var(--red) 0%, var(--orange) 50%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+      letter-spacing: 4px;
+      text-shadow: 0 0 40px rgba(247,127,0,0.3);
+      animation: titleGlow 3s ease-in-out infinite alternate;
+    }
+
+    .tagline {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 900;
+      margin: 1rem 0 2rem;
+      background: linear-gradient(90deg, var(--light), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      opacity: 0.9;
+      line-height: 1.8;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      opacity: 0.6;
+    }
+
+    .scroll-indicator::before {
+      content: '↓';
+      font-size: 2rem;
+      display: block;
+    }
+
+    /* Products Section */
+    .products {
+      padding: 8rem 1rem;
+      position: relative;
+    }
+
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 0 1rem; 
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      text-align: center;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--orange), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      opacity: 0.8;
+      margin-bottom: 4rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      text-align: center;
+      border: 2px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.6s;
+    }
+
+    .card:hover::before {
+      left: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-20px) scale(1.02);
+      border-color: var(--orange);
+      box-shadow: 0 20px 60px rgba(247,127,0,0.3);
+    }
+
+    .card-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      display: block;
+      animation: iconBounce 2s ease-in-out infinite;
+    }
+
+    .card:nth-child(2) .card-icon {
+      animation-delay: 0.3s;
+    }
+
+    .card:nth-child(3) .card-icon {
+      animation-delay: 0.6s;
+    }
+
+    .card h3 { 
+      font-size: 2rem; 
+      margin: 1rem 0;
+      font-weight: 900;
+    }
+
+    .card p {
+      opacity: 0.85;
+      margin: 1rem 0;
+      font-size: 1.1rem;
+    }
+
+    .price {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--orange);
+      margin: 1.5rem 0;
+      text-shadow: 0 0 20px rgba(247,127,0,0.4);
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Order Section */
+    .order-section {
+      padding: 8rem 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .order-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 4rem;
+    }
+
+    .order-btn {
+      padding: 2rem 3.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      border-radius: 60px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .order-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .order-btn:hover::before {
+      width: 400px;
+      height: 400px;
+    }
+
+    .gp-btn {
+      background: linear-gradient(135deg, #1D3557, #457B9D);
+    }
+
+    .lp-btn {
+      background: linear-gradient(135deg, #2A9D8F, #53BBAE);
+    }
+
+    .order-btn:hover {
+      transform: scale(1.1) rotate(-2deg);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    }
+
+    .order-btn img {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .order-btn span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Features Section */
+    .features {
+      padding: 6rem 1rem;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .feature-item {
+      text-align: center;
+      padding: 2rem;
+      transition: transform 0.3s;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-10px);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-item h4 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--orange);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(0,0,0,0.5);
+      padding: 4rem 1rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .batau {
+      background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+      padding: 2.5rem;
+      border-radius: 24px;
+      max-width: 850px;
+      margin: 0 auto 3rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .batau::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(139,0,255,0.2), rgba(0,212,255,0.2), transparent);
+      animation: slideShine 3s infinite;
+    }
+
+    .batau-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .batau-icon {
+      font-size: 1.8rem;
+      filter: drop-shadow(0 0 10px rgba(139,0,255,0.6));
+    }
+
+    .batau a { 
+      color: #FFF; 
+      text-decoration: none;
+      background: linear-gradient(135deg, #8B00FF, #00D4FF);
+      padding: 0.3rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 15px rgba(139,0,255,0.4);
+    }
+
+    .batau a:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 25px rgba(139,0,255,0.6);
+    }
+
+    .batau-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #00D4FF, #8B00FF);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 1rem;
+      margin-top: 1rem;
+      transition: all 0.4s;
+      box-shadow: 0 6px 20px rgba(0,212,255,0.4);
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .batau-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.5s, height 0.5s;
+    }
+
+    .batau-cta:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .batau-cta:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 30px rgba(0,212,255,0.6);
+    }
+
+    .batau-cta span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .whatsapp-icon {
+      position: relative;
+      z-index: 1;
+      font-size: 1.3rem;
+      animation: wiggle 1s ease-in-out infinite;
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-10deg); }
+      75% { transform: rotate(10deg); }
+    }
+
+    @keyframes slideShine {
+      0% { left: -100%; }
+      50%, 100% { left: 100%; }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-25px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes titleGlow {
+      from { text-shadow: 0 0 40px rgba(247,127,0,0.3); }
+      to { text-shadow: 0 0 60px rgba(247,127,0,0.6), 0 0 80px rgba(230,57,70,0.4); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-15px); }
+    }
+
+    @keyframes iconBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .order-btn {
+        padding: 1.5rem 2.5rem;
+        font-size: 1.2rem;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-animation"></div>
+
+  <header>
+    <div class="hero-content">
+      <div class="zille-face">
+        <img src="https://zillewizzyatchaar.netlify.app/zillewizzy.jpg" alt="Zillewizzy">
+      </div>
+      <h1>ZILLEWIZZY'S ATCHAAR</h1>
+      <p class="tagline">Spice with Personality! 🔥</p>
+      <p class="hero-description">
+        Handcrafted garlic atchaar made with love in South Africa. 
+        Every jar is a flavor bomb that'll make your taste buds dance! 
+        <strong>Hot • Mild • Classic</strong> – all premium 1kg jars.
+      </p>
+    </div>
+    <div class="scroll-indicator"></div>
+  </header>
+
+  <section class="products">
+    <div class="container">
+      <h2 class="section-title">Choose Your Flavor Adventure</h2>
+      <p class="section-subtitle">Three levels of amazing. One unforgettable taste.</p>
+      
+      <div class="grid">
+        <div class="card">
+          <span class="card-icon">🔥</span>
+          <h3>HOT GARLIC</h3>
+          <p>The one that slaps harder than your ex. For those who live dangerously.</p>
+          <div class="price">R100</div>
+          <span class="badge">🌶️ Extra Spicy</span>
+        </div>
+        
+        <div class="card">
+          <span class="card-icon">🌶️</span>
+          <h3>MILD GARLIC</h3>
+          <p>Big flavor, no tears. Perfect balance of heat and taste.</p>
+          <div class="price">R100</div>
+          <span class="badge">✨ Crowd Favorite</span>
+        </div>
+        
+        <div class="card">
+          <span class="card-icon">🧄</span>
+          <h3>CLASSIC GARLIC</h3>
+          <p>The original. Pure garlic magic that started it all.</p>
+          <div class="price">R100</div>
+          <span class="badge">👑 OG Recipe</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">Why Zillewizzy?</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🤝</div>
+          <h4>Handcrafted</h4>
+          <p>Every jar made with passion and precision</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🇿🇦</div>
+          <h4>100% Mzansi</h4>
+          <p>Proudly South African ingredients</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🚚</div>
+          <h4>Fast Delivery</h4>
+          <p>Fresh to your door in LP & GP</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">⚡</div>
+          <h4>Flavor Bomb</h4>
+          <p>Taste that'll blow your mind</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="order-section">
+    <div class="container">
+      <h2 class="section-title">Ready to Skyf?</h2>
+      <p class="section-subtitle">Choose your province and let's make it happen!</p>
+
+      <div class="order-buttons">
+        <a href="https://wa.me/+27764120182?text=skyf%20ATCHAAR%20Zille!" class="order-btn lp-btn" target="_blank">
+          <img src="https://flagcdn.com/za-lp.svg" alt="Limpopo">
+          <span>Order in Limpopo</span>
+        </a>
+        <a href="https://wa.me/+27723247979?text=skyf%20ATCHAAR%20!" class="order-btn gp-btn" target="_blank">
+          <img src="https://flagcdn.com/za-gp.svg" alt="Gauteng">
+          <span>Order in Gauteng</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="batau">
+      <div class="batau-content">
+        <span class="batau-icon">🚀</span>
+        <span>Proudly crafted by</span>
+        <a href="https://batausoftware.dev" target="_blank">Batau Software Dev</a>
+        <span>– We make fire websites hotter than Zille's atchaar!</span>
+      </div>
+    </div>
+    <p style="opacity: 0.7;">© 2025 Zillewizzy's Atchaar. Made with ❤️ in Mzansi.</p>
+  </footer>
+
+</body>
+</html>
